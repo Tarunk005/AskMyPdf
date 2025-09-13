@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="../static/css/login.css">
+    <script>
+        function btnClick() {
+            var email = document.getElementById("txtEmail").value;
+            var password = document.getElementById("txtPassword").value;
+            if (email === "" || password === "") {
+                alert("Please fill in both fields.");
+                return;
+            }
+            // Submit the form to the Flask route
+            document.getElementById("loginForm").submit();
+        }
+    </script>
+    
+</head>
+<body>
+    <div class="centerchild">
+        <img src="../static/image/logoblue.png" alt="Logo">
+        <form id="loginForm" method="POST" action="home.html">
+            <input type="text" id="txtEmail" required name="email" placeholder="Enter Email">
+            <input type="password" id="txtPassword" required name="password" placeholder="Enter Password">
+            <button type="submit" class="button button2" onclick="btnClick()">LOGIN</button>
+        </form>
+        <a href="home.html"></a>
+    </div>
+</body>
+</html>

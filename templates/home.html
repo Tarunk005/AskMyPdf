@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document Q&A Platform</title>
+    <link rel="stylesheet" href="../static/css/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        function sendBtn(){
+            var val = document.getElementById("questionInput").value;
+            if (val === "") {
+                alert("Please enter a question.");
+                return;
+            }
+            var chatMessages = document.getElementById("chatMessages");
+            var html =  '<div style="width:100%;"><div style="background-color:#5b7cf4;border-radius:10px;padding:10px;float:right"><p style="color:white">'+val+'</p></div></div>';
+            chatMessages.innerHTML += html;
+            document.getElementById("questionInput").value = "";
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            setTimeout(() => {
+                html = '<br/><br/><div style="width:100%;margin-top:10px"><div style="background-color:#f1f1f1;border-radius:5px;padding:10px;float:left"><p style="color:black">This is a sample answer to your question.</p></div></div>';
+                chatMessages.innerHTML += html;
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 2000);
+           
+
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div style="display: flex; align-items: center;">
+                <img src="../static/image/logoblue.png" alt="Logo" style="height: 60px; margin-right: 25%;">
+                <div>
+                    <h1>Document Q&A Platform</h1>
+                    <p>Upload your documents and ask questions about them</p>
+                </div>
+            </div>
+        </header>
+
+        <main style="display: flex;margin: 30px;">
+            <section class="upload-section" >
+                <div class="upload-container" id="dropZone">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <h2>Upload Your Document</h2>
+                    <p>Drag and drop your PDF or DOCX file here</p>
+                    <p>or</p>
+                    <label for="fileInput" class="upload-btn">Choose File</label>
+                    <input type="file" id="fileInput" accept=".pdf,.docx" hidden>
+                </div>
+                <div class="file-info" id="fileInfo" style="display: none;">
+                    <i class="fas fa-file-alt"></i>
+                    <span id="fileName"></span>
+                    <button class="remove-btn" id="removeFile">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </section>
+
+            <section class="qa-section">
+                <div class="chat-container">
+                    <div class="chat-messages" id="chatMessages" ></div>
+                    <div class="input-container">
+                        <textarea id="questionInput" placeholder="Ask a question about your document..."></textarea>
+                        <button id="sendQuestion" class="send-btn" onclick="sendBtn()">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="../static/script.js"></script>
+</body>
+</html>
